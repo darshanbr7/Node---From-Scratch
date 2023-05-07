@@ -6,7 +6,7 @@ const port=3000
 
 let router=require("./Config/Router")
 
-router.get("/")
+
 app.use(router)
 MongoConfiguration()
 
