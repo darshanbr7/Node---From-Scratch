@@ -4,7 +4,9 @@ const autoIncrement = require('mongoose-auto-increment');
 // two Apprch to create a Schema 
 // 1
 let Schema=mongoose.Schema
-let Empdetails=new Schema({})
+let Empdetails=new Schema({
+    
+})
 
 // 2
 /* let Empdetails= new mongoose.Schema({})*/ 
