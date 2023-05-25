@@ -1,7 +1,9 @@
 const express=require("express")
 const connect=require("./Config/dbconnection")
 const routes=require("./Config/routes")
+const cors=require("cors")
 const app=express()
+app.use(cors())
 app.use(express.json())
 const port=3009
 connect()
