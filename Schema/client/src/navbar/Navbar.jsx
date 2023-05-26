@@ -1,19 +1,11 @@
 import React from 'react'
 import { Link ,useNavigate} from 'react-router-dom'
-import axiosInstance from '../Axios/Axiospage'
+import {TbLogout} from "react-icons/tb"
+import { CgProfile } from 'react-icons/cg';
+
 const Navbar = () => {
   const navigate=useNavigate()
-  const[name,setName]=React.useState("")
-  React.useEffect(()=>{
-        axiosInstance.get("http://localhost:3009/api/user").then((data)=>{
-
-          setName(data.data)
-         
-        })
-                                                            .catch((err)=>{
-                                                              console.log(err)
-                                                            })
-  })
+  
   return (
     <div>
     <div className="container-fluid">
@@ -27,9 +19,24 @@ const Navbar = () => {
               localStorage.getItem("token")  ? <li className='nav-item'><Link  className='nav-link text-white' onClick={()=>{ localStorage.removeItem("token") 
               alert("Succesfully Logout")
               navigate("/")
-            }} >Logut</Link>       </li> : <li className='nav-item'><Link to={"/Login"}  className='nav-link text-white' >Login</Link>  </li>
+            }} ></Link>       </li> : <li className='nav-item'><Link to={"/Login"}  className='nav-link text-white' >Login</Link>  </li>
             }
-              <li className='nav-link text-white'>{name}</li>     
+          {
+            localStorage.getItem("token")? <li className="nav-item dropdown mr-5">
+            <Link className="nav-link dropdown-toggle text-white "  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <CgProfile size={25}/>
+            </Link>
+            <div className="dropdown-menu mr-3 " aria-labelledby="navbarDropdownMenuLink">
+              <Link className="dropdown-item" to={"/Profile"} >Profile</Link>
+              <Link className="dropdown-item" onClick={()=>{ localStorage.removeItem("token") 
+                  alert("Succesfully Logout")
+                  navigate("/")
+                }}  > <TbLogout size={25} color='red'/>  Logout</Link>
+             
+            </div>
+          </li>:<li></li>
+          }   
+          
           </ul>
           
         </div>
